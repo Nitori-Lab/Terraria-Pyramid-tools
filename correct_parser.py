@@ -161,11 +161,7 @@ def parse_world(filename, verbose=False):
                         texture_u = read_int16(f)
                         texture_v = read_int16(f)
 
-                    # Found Sandstone Brick!
-                    if tile_type == SANDSTONE_BRICK:
-                        sandstone_coords.append((x, y))
-                        if verbose:
-                            print(f"\n*** FOUND SANDSTONE BRICK at ({x}, {y}) ***")
+                    # Don't record here - will be handled by RLE section below
 
                 # Wall (bit 2 of ActiveFlags)
                 if active_flags & 0x04:
