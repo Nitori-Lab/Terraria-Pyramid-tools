@@ -1,6 +1,6 @@
-# Terraria Pyramid Detector
+# Terraria Pyramid Toolkit
 
-Automatically detect pyramids in Terraria worlds with GUI and CLI support.
+Automatically detect pyramids or generate a specified number of worlds with at least 1 pyramid in Terraria with GUI and CLI support.
 
 ## Features
 
