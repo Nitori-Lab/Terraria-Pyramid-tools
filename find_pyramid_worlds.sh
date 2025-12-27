@@ -178,12 +178,12 @@ while [ $PYRAMIDS_FOUND -lt $PYRAMID_TARGET ] && [ $TOTAL_GENERATED -lt $MAX_ATT
         fi
     done
 
-    # Kill the server process
+    # Kill the server process (but NOT the game client)
     kill $SERVER_PID 2>/dev/null
     sleep 1
     kill -9 $SERVER_PID 2>/dev/null
+    # Only kill TerrariaServer processes, not Terraria game client
     pkill -9 -f "TerrariaServer" 2>/dev/null
-    pkill -9 -f "Terraria.bin.osx" 2>/dev/null
     wait $SERVER_PID 2>/dev/null
 
     sleep 1

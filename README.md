@@ -1,28 +1,44 @@
 # Terraria Pyramid Detector
 
-Automatically detect pyramids (Sandstone Brick) in Terraria worlds and rename world files containing pyramids.
+Automatically detect pyramids (Sandstone Brick) in Terraria worlds with both GUI and command-line interfaces.
 
 ## Features
 
+- **🖥️ Graphical User Interface**: Easy-to-use Tkinter GUI with real-time output
 - **Automatic World Generation**: Batch generate Terraria worlds
 - **Pyramid Detection**: Scan world files for Sandstone Brick (tile ID: 151)
-- **Auto-Rename**: Add "1 " prefix to world files containing pyramids
-- **Cross-Platform**: Supports macOS, Linux, and Windows
+- **Parameter Validation**: Built-in validation prevents illegal values
+- **Cross-Platform**: Supports macOS, Linux, and Windows (native PowerShell support, no WSL required)
 
 ## Files
 
+### GUI Application
+
+- **gui.py** - Tkinter GUI application (recommended way to use)
+- **gui_validators.py** - Parameter validation framework
+
 ### Main Scripts
 
+**Bash Scripts (macOS/Linux):**
 1. **auto_pyramid_finder.sh** - Automated pyramid finder
-   - Generate worlds → Detect pyramids → Auto-rename
+   - Generate worlds → Detect pyramids → Optional delete
    - Display statistics (success rate, etc.)
 
-2. **tWorldGen.sh** - Batch world generator
+2. **find_pyramid_worlds.sh** - Target-based world finder
+   - Generate until finding X pyramid worlds
+   - Auto-delete non-pyramid worlds
+
+3. **tWorldGen.sh** - Batch world generator
    - Only generates worlds, no detection
 
-3. **check_and_rename.py** - Python check and rename tool
-   - Check a single world file
-   - Rename if pyramid found
+**PowerShell Scripts (Windows):**
+1. **auto_pyramid_finder.ps1** - Windows version of auto pyramid finder
+2. **find_pyramid_worlds.ps1** - Windows version of target-based finder
+3. **tWorldGen.ps1** - Windows version of batch generator
+
+**Python Tools:**
+- **check_and_rename.py** - Check a single world file
+- **scan_existing_worlds.sh** - Scan all existing worlds for pyramids
 
 ### Parsers
 
@@ -31,12 +47,45 @@ Automatically detect pyramids (Sandstone Brick) in Terraria worlds and rename wo
 - **main.py** / **lihzahrd_parser.py** - Parser using lihzahrd library
 - **sandstone_finder.py** - Simple byte pattern scanner
 
-## Usage
+## Quick Start
 
-### 1. Auto-find Pyramid Worlds (Recommended)
+### GUI (Recommended - All Platforms)
+
+Simply run the GUI application:
 
 ```bash
-./auto_pyramid_finder.sh [SIZE] [DIFFICULTY] [EVIL] [COUNT]
+# macOS/Linux
+python3 gui.py
+
+# Windows
+python gui.py
+```
+
+The GUI automatically detects your platform and uses the correct scripts (bash on Unix, PowerShell on Windows).
+
+## Usage
+
+### GUI Usage
+
+1. Launch `gui.py`
+2. Select script mode (Auto Pyramid Finder / Find Pyramid Worlds / World Generator)
+3. Set parameters using dropdowns and spinboxes (all validated)
+4. Click "Start Generation"
+5. View real-time output in the log window
+6. Click "Open World Directory" to see generated worlds
+
+### Command-Line Usage
+
+### 1. Auto-find Pyramid Worlds
+
+**macOS/Linux:**
+```bash
+./auto_pyramid_finder.sh [SIZE] [DIFFICULTY] [EVIL] [COUNT] [DELETE_NO_PYRAMID]
+```
+
+**Windows (PowerShell):**
+```powershell
+.\auto_pyramid_finder.ps1 [SIZE] [DIFFICULTY] [EVIL] [COUNT] [DELETE_NO_PYRAMID]
 ```
 
 Parameters:
@@ -44,14 +93,15 @@ Parameters:
 - `DIFFICULTY`: Difficulty (1=Normal, 2=Expert, 3=Master, default: 1)
 - `EVIL`: Evil type (1=Random, 2=Corruption, 3=Crimson, default: 1)
 - `COUNT`: Number of worlds to generate, max 200 (default: 1)
+- `DELETE_NO_PYRAMID`: Delete non-pyramid worlds (0=Keep, 1=Delete, default: 0)
 
 Examples:
 ```bash
-# Generate 10 medium-sized normal difficulty worlds with random evil
-./auto_pyramid_finder.sh 2 1 1 10
+# macOS/Linux - Generate 10 medium worlds, keep all
+./auto_pyramid_finder.sh 2 1 1 10 0
 
-# Generate 5 large worlds
-./auto_pyramid_finder.sh 3 1 1 5
+# Windows - Generate 5 large worlds, delete non-pyramid worlds
+.\auto_pyramid_finder.ps1 3 1 1 5 1
 ```
 
 ### 2. Check Single World File
@@ -67,8 +117,14 @@ python3 check_and_rename.py ~/Library/Application\ Support/Terraria/Worlds/MyWor
 
 ### 3. Generate Worlds Only (No Detection)
 
+**macOS/Linux:**
 ```bash
 ./tWorldGen.sh [SIZE] [DIFFICULTY] [EVIL] [COUNT]
+```
+
+**Windows (PowerShell):**
+```powershell
+.\tWorldGen.ps1 [SIZE] [DIFFICULTY] [EVIL] [COUNT]
 ```
 
 ## Configuration
@@ -93,6 +149,7 @@ Scripts automatically detect TerrariaServer and world directory locations:
 
 If auto-detection fails, use environment variables:
 
+**macOS/Linux:**
 ```bash
 # Set TerrariaServer path
 export TERRARIA_SERVER_PATH="/your/custom/path/to/TerrariaServer"
@@ -104,7 +161,32 @@ export TERRARIA_WORLD_DIR="/your/custom/worlds/directory"
 ./auto_pyramid_finder.sh 2 1 1 5
 ```
 
+**Windows (PowerShell):**
+```powershell
+# Set TerrariaServer path
+$env:TERRARIA_SERVER_PATH = "C:\Path\To\TerrariaServer.exe"
+
+# Set world directory
+$env:TERRARIA_WORLD_DIR = "C:\Path\To\Worlds"
+
+# Then run the script
+.\auto_pyramid_finder.ps1 2 1 1 5
+```
+
 Or edit the script files directly to modify `TERRARIA_SERVER` and `WORLD_DIR` variables.
+
+### Windows PowerShell Execution Policy
+
+If you get an execution policy error on Windows, run PowerShell as Administrator and execute:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+Or run scripts with bypass (GUI does this automatically):
+```powershell
+powershell -ExecutionPolicy Bypass -File .\auto_pyramid_finder.ps1
+```
 
 ## Example Output
 
@@ -142,11 +224,18 @@ World directory: ~/Library/Application Support/Terraria/Worlds
 
 ## Requirements
 
-- **Bash** (built-in on macOS/Linux, requires Git Bash or WSL on Windows)
-- **Python 3.6+**
+### All Platforms
+- **Python 3.6+** with Tkinter (usually included)
 - **Terraria 1.4.4.9** (including TerrariaServer)
+- **lihzahrd** library: `pip install lihzahrd`
 
-No additional Python libraries needed (`correct_parser.py` uses only standard library).
+### Platform-Specific
+- **macOS/Linux**: Bash (pre-installed)
+- **Windows**: PowerShell 5.0+ (pre-installed on Windows 7+)
+
+### Optional
+- For command-line scripts on Windows without GUI: No additional requirements
+- For command-line scripts on macOS/Linux: Bash (pre-installed)
 
 ## How It Works
 
