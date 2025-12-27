@@ -1,0 +1,13 @@
+# Core dependencies
+lihzahrd>=3.0.0
+click>=8.0.0
+
+# GUI dependencies are standard library (tkinter)
+# tkinter is included with Python on most systems
+
+# Development dependencies (install with: pip install -e ".[dev]")
+# pytest>=7.0.0
+# pytest-cov
+# black
+# flake8
+# mypy
