@@ -14,7 +14,7 @@ Automatically detect pyramids or generate a specified number of worlds with at l
 ### Installation
 
 ```bash
-git clone https://github.com/yourusername/pyramidDetector.git
+git clone https://github.com/Notori-Lab/Terraria-Pyramid-tools.git
 cd pyramidDetector
 pip install -r requirements.txt
 ```
