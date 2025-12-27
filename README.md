@@ -112,10 +112,6 @@ pyramid_detector/
 └── gui/           # Graphical interface
 ```
 
-## Documentation
-
-- [ARCHITECTURE.md](ARCHITECTURE.md) - Architecture details
-- [CHANGELOG.md](CHANGELOG.md) - Version history
 
 ## License
 
