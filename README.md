@@ -1,6 +1,7 @@
 # Terraria Pyramid Toolkit
 
 Automatically detect pyramids or generate a specified number of worlds with at least 1 pyramid in Terraria with GUI and CLI support.
+(I make the toolkit mainly beacause classic speedrun practice demands a lot of worlds with pyramid, which are hard to generate. Using this toolkit, you can easily start your sppedrun practice. But I don't think you should use it when you want to submit your run to speedrun website.)
 
 ## Features
 
@@ -96,11 +97,36 @@ set TERRARIA_SERVER_PATH=C:\Path\To\TerrariaServer.exe
 - TerrariaServer: `C:\Program Files (x86)\Steam\steamapps\common\Terraria\TerrariaServer.exe`
 - Worlds: `%USERPROFILE%\Documents\My Games\Terraria\Worlds`
 
+## Building Standalone Executable
+
+You can build a double-click launcher for the GUI:
+
+### Quick Build
+
+**macOS/Linux:**
+```bash
+./build.sh
+```
+
+**Windows:**
+```batch
+build.bat
+```
+
+### Output
+
+- **macOS:** `dist/PyramidDetector.app` (double-click to run)
+- **Windows:** `dist/PyramidDetector/PyramidDetector.exe` (double-click to run)
+- **Linux:** `dist/PyramidDetector/PyramidDetector` (executable)
+
+See [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md) for detailed build options.
+
 ## Requirements
 
 - Python 3.6+
 - Terraria 1.4.4.9 with TerrariaServer
 - Dependencies: `pip install -r requirements.txt`
+- Build tools (optional): `pip install pyinstaller`
 
 ## Project Structure
 
