@@ -5,6 +5,9 @@ click>=8.0.0
 # GUI dependencies are standard library (tkinter)
 # tkinter is included with Python on most systems
 
+# Build dependencies (for creating executables)
+# pyinstaller>=5.0.0
+
 # Development dependencies (install with: pip install -e ".[dev]")
 # pytest>=7.0.0
 # pytest-cov
