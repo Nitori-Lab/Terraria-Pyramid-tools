@@ -1,8 +1,8 @@
 @echo off
-REM Build script for Terraria Pyramid Detector GUI (Windows)
+REM Build script for Terraria Pyramid Toolkit GUI (Windows)
 
 echo ===================================
-echo Pyramid Detector GUI Builder
+echo Pyramid Toolkit GUI Builder
 echo ===================================
 echo.
 
@@ -22,7 +22,7 @@ if exist dist rmdir /s /q dist
 REM Build the application
 echo.
 echo Building GUI application...
-pyinstaller pyramid_detector.spec --clean
+pyinstaller pyramid_toolkit.spec --clean
 
 if %errorlevel% equ 0 (
     echo.

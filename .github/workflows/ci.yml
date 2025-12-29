@@ -31,30 +31,30 @@ jobs:
     - name: Lint with flake8
       run: |
         # Stop the build if there are Python syntax errors or undefined names
-        flake8 pyramid_detector --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 pyramid_toolkit --count --select=E9,F63,F7,F82 --show-source --statistics
         # Exit-zero treats all errors as warnings
-        flake8 pyramid_detector --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
+        flake8 pyramid_toolkit --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
 
     - name: Check code formatting with black
       run: |
-        black --check pyramid_detector
+        black --check pyramid_toolkit
 
     - name: Test imports
       run: |
-        python -c "from pyramid_detector.core import WorldConfig; print('Core imports OK')"
-        python -c "from pyramid_detector.platform import get_platform_adapter; print('Platform imports OK')"
-        python -c "from pyramid_detector.cli import cli; print('CLI imports OK')"
+        python -c "from pyramid_toolkit.core import WorldConfig; print('Core imports OK')"
+        python -c "from pyramid_toolkit.platform import get_platform_adapter; print('Platform imports OK')"
+        python -c "from pyramid_toolkit.cli import cli; print('CLI imports OK')"
 
     - name: Test CLI
       run: |
-        python -m pyramid_detector.cli --help
-        python -m pyramid_detector.cli auto-find --help
-        python -m pyramid_detector.cli find-pyramids --help
-        python -m pyramid_detector.cli generate --help
+        python -m pyramid_toolkit.cli --help
+        python -m pyramid_toolkit.cli auto-find --help
+        python -m pyramid_toolkit.cli find-pyramids --help
+        python -m pyramid_toolkit.cli generate --help
 
     - name: Run unit tests
       run: |
-        pytest tests/ --cov=pyramid_detector --cov-report=xml --cov-report=term
+        pytest tests/ --cov=pyramid_toolkit --cov-report=xml --cov-report=term
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3

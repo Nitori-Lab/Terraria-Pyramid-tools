@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Terraria Pyramid Detector GUI Launcher
+Terraria Pyramid Toolkit GUI Launcher
 
 Simple entry point for launching the GUI application.
 This script can be run directly or packaged with PyInstaller.
@@ -18,10 +18,10 @@ def main():
         sys.path.insert(0, parent_dir)
 
     try:
-        from pyramid_detector.gui.app import main as gui_main
+        from pyramid_toolkit.gui.app import main as gui_main
         gui_main()
     except ImportError as e:
-        print(f"Error: Failed to import pyramid_detector module: {e}")
+        print(f"Error: Failed to import pyramid_toolkit module: {e}")
         print(f"Current directory: {os.getcwd()}")
         print(f"Script directory: {parent_dir}")
         print(f"Python path: {sys.path}")

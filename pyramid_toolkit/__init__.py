@@ -1,5 +1,5 @@
 """
-Terraria Pyramid Detector
+Terraria Pyramid Toolkit
 
 A cross-platform tool for automatically generating Terraria worlds
 and detecting pyramids (Sandstone Brick structures).
@@ -12,8 +12,8 @@ Features:
 
 Usage:
     # Using the orchestrator directly
-    from pyramid_detector.platform.factory import get_platform_adapter
-    from pyramid_detector.core import (
+    from .platform.factory import get_platform_adapter
+    from .core import (
         GenerationOrchestrator,
         WorldGenerationParams,
         create_strategy
@@ -28,7 +28,7 @@ Usage:
     results, stats = orchestrator.execute_strategy(params, strategy)
 
     # Using CLI
-    $ pyramid-detector auto-find --size 2 --count 10
+    $ pyramid-toolkit auto-find --size 2 --count 10
 
     # Using GUI
     $ pyramid-gui
@@ -48,7 +48,7 @@ from .core import (
 )
 
 __version__ = '1.0.0'
-__author__ = 'Pyramid Detector Contributors'
+__author__ = 'Pyramid Toolkit Contributors'
 __license__ = 'MIT'
 
 __all__ = [

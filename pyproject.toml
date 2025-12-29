@@ -3,14 +3,14 @@ requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "pyramid-detector"
+name = "pyramid-toolkit"
 version = "2.0.0"
 description = "Automatically detect pyramids in Terraria worlds"
 readme = "README.md"
 requires-python = ">=3.6"
 license = {text = "MIT"}
 authors = [
-    {name = "Pyramid Detector Contributors"},
+    {name = "Pyramid Toolkit Contributors"},
 ]
 keywords = ["terraria", "pyramid", "world-generation", "game-tools"]
 classifiers = [
@@ -41,17 +41,17 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/pyramid-detector"
-Documentation = "https://github.com/yourusername/pyramid-detector/blob/main/README.md"
-Repository = "https://github.com/yourusername/pyramid-detector"
-"Bug Tracker" = "https://github.com/yourusername/pyramid-detector/issues"
+Homepage = "https://github.com/yourusername/pyramid-toolkit"
+Documentation = "https://github.com/yourusername/pyramid-toolkit/blob/main/README.md"
+Repository = "https://github.com/yourusername/pyramid-toolkit"
+"Bug Tracker" = "https://github.com/yourusername/pyramid-toolkit/issues"
 
 [project.scripts]
-pyramid-detector = "pyramid_detector.cli.main:cli"
-pyramid-gui = "pyramid_detector.gui.app:main"
+pyramid-toolkit = "pyramid_toolkit.cli.main:cli"
+pyramid-gui = "pyramid_toolkit.gui.app:main"
 
 [tool.setuptools]
-packages = ["pyramid_detector", "pyramid_detector.core", "pyramid_detector.platform", "pyramid_detector.cli", "pyramid_detector.gui"]
+packages = ["pyramid_toolkit", "pyramid_toolkit.core", "pyramid_toolkit.platform", "pyramid_toolkit.cli", "pyramid_toolkit.gui"]
 
 [tool.black]
 line-length = 100

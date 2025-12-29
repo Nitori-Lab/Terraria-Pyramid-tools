@@ -1,5 +1,5 @@
 """
-Core configuration and business rules for Terraria Pyramid Detector.
+Core configuration and business rules for Terraria Pyramid Toolkit.
 
 This module defines the single source of truth for all business constraints,
 validation rules, and configuration constants.

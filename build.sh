@@ -1,10 +1,10 @@
 #!/bin/bash
-# Build script for Terraria Pyramid Detector GUI (macOS/Linux)
+# Build script for Terraria Pyramid Toolkit GUI (macOS/Linux)
 
 set -e  # Exit on error
 
 echo "==================================="
-echo "Pyramid Detector GUI Builder"
+echo "Pyramid Toolkit GUI Builder"
 echo "==================================="
 echo ""
 
@@ -22,7 +22,7 @@ rm -rf build dist *.spec.bak
 # Build the application
 echo ""
 echo "Building GUI application..."
-pyinstaller pyramid_detector.spec --clean
+pyinstaller pyramid_toolkit.spec --clean
 
 # Check build result
 if [ $? -eq 0 ]; then

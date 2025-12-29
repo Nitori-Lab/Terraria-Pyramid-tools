@@ -1,11 +1,11 @@
 """
-Platform-specific implementations for Terraria Pyramid Detector.
+Platform-specific implementations for Terraria Pyramid Toolkit.
 
 This package contains platform adapters that handle OS-specific
 operations such as running TerrariaServer and managing files.
 
 Usage:
-    from pyramid_detector.platform import get_platform_adapter
+    from .platform import get_platform_adapter
 
     platform = get_platform_adapter()
     world_path = platform.generate_world(params)

@@ -1,6 +1,6 @@
-# Building Pyramid Detector GUI
+# Building Pyramid Toolkit GUI
 
-This guide explains how to build standalone executables for Terraria Pyramid Detector GUI.
+This guide explains how to build standalone executables for Terraria Pyramid Toolkit GUI.
 
 ## Prerequisites
 
@@ -87,7 +87,7 @@ If the build scripts don't work, you can build manually:
 rm -rf build dist
 
 # Build with PyInstaller
-pyinstaller pyramid_detector.spec --clean
+pyinstaller pyramid_toolkit.spec --clean
 ```
 
 ## Build Options
@@ -96,7 +96,7 @@ pyinstaller pyramid_detector.spec --clean
 
 To create a single executable file instead of a folder:
 
-Edit `pyramid_detector.spec` and change:
+Edit `pyramid_toolkit.spec` and change:
 ```python
 exe = EXE(
     pyz,
@@ -125,9 +125,9 @@ Then rebuild:
 
 ### Including CLI
 
-To include the CLI tools in the build, edit `pyramid_detector.spec` and remove this line:
+To include the CLI tools in the build, edit `pyramid_toolkit.spec` and remove this line:
 ```python
-excludes=['pyramid_detector.cli'],
+excludes=['pyramid_toolkit.cli'],
 ```
 
 ### Custom Icon
@@ -139,7 +139,7 @@ To add a custom icon:
    - **Windows:** `.ico` file
    - **Linux:** `.png` file (512x512 recommended)
 
-2. Edit `pyramid_detector.spec`:
+2. Edit `pyramid_toolkit.spec`:
    ```python
    if sys.platform == 'darwin':
        icon_file = 'icon.icns'
@@ -162,7 +162,7 @@ brew install create-dmg
 
 # Create DMG
 create-dmg \
-  --volname "Pyramid Detector" \
+  --volname "Pyramid Toolkit" \
   --window-pos 200 120 \
   --window-size 600 400 \
   --icon-size 100 \
@@ -206,10 +206,10 @@ Use [appimage-builder](https://appimage-builder.readthedocs.io/)
 
 ### "Module not found" errors
 
-Add missing modules to `hiddenimports` in `pyramid_detector.spec`:
+Add missing modules to `hiddenimports` in `pyramid_toolkit.spec`:
 ```python
 hiddenimports=[
-    'pyramid_detector',
+    'pyramid_toolkit',
     'your_missing_module',
 ],
 ```

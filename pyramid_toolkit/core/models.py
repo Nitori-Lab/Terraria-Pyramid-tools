@@ -1,5 +1,5 @@
 """
-Data models for Terraria Pyramid Detector.
+Data models for Terraria Pyramid Toolkit.
 
 This module defines pure data structures used throughout the application.
 All models are platform-agnostic and contain only business logic.

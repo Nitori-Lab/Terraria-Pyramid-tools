@@ -1,5 +1,5 @@
 """
-Core business logic for Terraria Pyramid Detector.
+Core business logic for Terraria Pyramid Toolkit.
 
 This package contains platform-agnostic business logic including:
 - Configuration and validation rules

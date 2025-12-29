@@ -23,20 +23,20 @@ pip install -r requirements.txt
 ### GUI (Recommended)
 
 ```bash
-python -m pyramid_detector.gui
+python -m pyramid_toolkit.gui
 ```
 
 ### CLI Examples
 
 ```bash
 # Generate 10 worlds and detect pyramids
-python -m pyramid_detector.cli auto-find --count 10
+python -m pyramid_toolkit.cli auto-find --count 10
 
 # Find 5 pyramid worlds
-python -m pyramid_detector.cli find-pyramids --target 5
+python -m pyramid_toolkit.cli find-pyramids --target 5
 
 # See all options
-python -m pyramid_detector.cli --help
+python -m pyramid_toolkit.cli --help
 ```
 
 ## CLI Usage
@@ -44,7 +44,7 @@ python -m pyramid_detector.cli --help
 ### Auto-find Mode
 Generate a fixed number of worlds:
 ```bash
-python -m pyramid_detector.cli auto-find [OPTIONS]
+python -m pyramid_toolkit.cli auto-find [OPTIONS]
 
 Options:
   --size, -s INTEGER       World size (1=Small, 2=Medium, 3=Large) [default: 2]
@@ -57,7 +57,7 @@ Options:
 ### Find-pyramids Mode
 Generate until finding pyramid worlds:
 ```bash
-python -m pyramid_detector.cli find-pyramids [OPTIONS]
+python -m pyramid_toolkit.cli find-pyramids [OPTIONS]
 
 Options:
   --target, -t INTEGER        Number of pyramid worlds to find [default: 1]
@@ -67,7 +67,7 @@ Options:
 ### Generate Mode
 Generate worlds without detection:
 ```bash
-python -m pyramid_detector.cli generate --count 5
+python -m pyramid_toolkit.cli generate --count 5
 ```
 
 ## Configuration
@@ -131,7 +131,7 @@ See [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md) for detailed build options.
 ## Project Structure
 
 ```
-pyramid_detector/
+pyramid_toolkit/
 ├── core/          # Business logic
 ├── platform/      # OS-specific implementations
 ├── cli/           # Command-line interface

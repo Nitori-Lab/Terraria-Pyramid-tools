@@ -2,7 +2,7 @@
 Entry point for running GUI as a module.
 
 Usage:
-    python -m pyramid_detector.gui
+    python -m pyramid_toolkit.gui
 """
 
 from .app import main

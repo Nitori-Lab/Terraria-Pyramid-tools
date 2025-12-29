@@ -1,8 +1,8 @@
 #!/bin/bash
-# Create Linux desktop entry for Pyramid Detector
+# Create Linux desktop entry for Pyramid Toolkit
 
 INSTALL_DIR="$(pwd)/dist/PyramidDetector"
-DESKTOP_FILE="$HOME/.local/share/applications/pyramid-detector.desktop"
+DESKTOP_FILE="$HOME/.local/share/applications/pyramid-toolkit.desktop"
 
 echo "Creating desktop entry..."
 
@@ -12,8 +12,8 @@ cat > "$DESKTOP_FILE" << EOF
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=Pyramid Detector
-Comment=Terraria Pyramid Detector
+Name=Pyramid Toolkit
+Comment=Terraria Pyramid Toolkit
 Exec=$INSTALL_DIR/PyramidDetector
 Icon=$INSTALL_DIR/icon.png
 Terminal=false

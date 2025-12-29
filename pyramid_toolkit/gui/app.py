@@ -1,5 +1,5 @@
 """
-Terraria Pyramid Detector GUI Application.
+Terraria Pyramid Toolkit GUI Application.
 
 This module provides a Tkinter-based graphical interface using the
 new core architecture.
@@ -19,12 +19,12 @@ from ..platform import get_platform_adapter, get_platform_name
 
 
 class PyramidDetectorGUI:
-    """Main GUI application for Terraria Pyramid Detector."""
+    """Main GUI application for Terraria Pyramid Toolkit."""
 
     def __init__(self, root):
         """Initialize GUI application."""
         self.root = root
-        self.root.title("Terraria Pyramid Detector (v2.0)")
+        self.root.title("Terraria Pyramid Toolkit (v2.0)")
         self.root.geometry("900x750")
         self.root.resizable(True, True)
 
@@ -48,7 +48,7 @@ class PyramidDetectorGUI:
 
         # Show platform info
         self.log(f"Platform: {platform_name}")
-        self.log(f"Terraria Pyramid Detector v2.0")
+        self.log(f"Terraria Pyramid Toolkit v2.0")
         self.log("")
 
     def create_widgets(self):

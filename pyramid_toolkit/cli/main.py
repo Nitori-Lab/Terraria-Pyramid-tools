@@ -1,5 +1,5 @@
 """
-Command-line interface for Terraria Pyramid Detector.
+Command-line interface for Terraria Pyramid Toolkit.
 
 This module provides a Click-based CLI for all generation modes.
 """
@@ -66,10 +66,10 @@ def validate_max_attempts(ctx, param, value):
 
 
 @click.group()
-@click.version_option(version='1.0.0', prog_name='pyramid-detector')
+@click.version_option(version='1.0.0', prog_name='pyramid-toolkit')
 def cli():
     """
-    Terraria Pyramid Detector - Automatically generate and detect pyramid worlds.
+    Terraria Pyramid Toolkit - Automatically generate and detect pyramid worlds.
 
     Use --help with any command to see detailed options.
 
@@ -77,15 +77,15 @@ def cli():
 
         \b
         # Generate 10 medium worlds, keep all
-        pyramid-detector auto-find --size 2 --count 10
+        pyramid-toolkit auto-find --size 2 --count 10
 
         \b
         # Find 5 pyramid worlds (small, crimson)
-        pyramid-detector find-pyramids --size 1 --evil 3 --target 5
+        pyramid-toolkit find-pyramids --size 1 --evil 3 --target 5
 
         \b
         # Generate 3 worlds without detection
-        pyramid-detector generate --count 3
+        pyramid-toolkit generate --count 3
     """
     # Display platform info
     platform_name = get_platform_name()
@@ -137,11 +137,11 @@ def auto_find(size, difficulty, evil, count, delete):
 
         \b
         # Generate 10 medium worlds, keep all
-        pyramid-detector auto-find --count 10
+        pyramid-toolkit auto-find --count 10
 
         \b
         # Generate 5 large worlds, delete non-pyramid
-        pyramid-detector auto-find --size 3 --count 5 --delete
+        pyramid-toolkit auto-find --size 3 --count 5 --delete
     """
     try:
         # Create platform adapter
@@ -228,11 +228,11 @@ def find_pyramids(size, difficulty, evil, target, max_attempts):
 
         \b
         # Find 3 pyramid worlds (up to 50 attempts)
-        pyramid-detector find-pyramids --target 3 --max-attempts 50
+        pyramid-toolkit find-pyramids --target 3 --max-attempts 50
 
         \b
         # Find 1 large crimson pyramid world
-        pyramid-detector find-pyramids --size 3 --evil 3 --target 1
+        pyramid-toolkit find-pyramids --size 3 --evil 3 --target 1
     """
     try:
         # Create platform adapter
@@ -313,11 +313,11 @@ def generate(size, difficulty, evil, count):
 
         \b
         # Generate 5 medium worlds
-        pyramid-detector generate --count 5
+        pyramid-toolkit generate --count 5
 
         \b
         # Generate 3 small expert crimson worlds
-        pyramid-detector generate --size 1 --difficulty 2 --evil 3 --count 3
+        pyramid-toolkit generate --size 1 --difficulty 2 --evil 3 --count 3
     """
     try:
         # Create platform adapter

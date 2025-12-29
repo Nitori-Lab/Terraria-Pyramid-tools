@@ -1,6 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 """
-PyInstaller spec file for Terraria Pyramid Detector GUI
+PyInstaller spec file for Terraria Pyramid Toolkit GUI
 
 This file configures how PyInstaller packages the application.
 """
@@ -27,26 +27,26 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[
-        ('pyramid_detector', 'pyramid_detector'),
+        ('pyramid_toolkit', 'pyramid_toolkit'),
         ('requirements.txt', '.'),
         ('LICENSE', '.'),
         ('README.md', '.'),
     ],
     hiddenimports=[
-        'pyramid_detector',
-        'pyramid_detector.core',
-        'pyramid_detector.core.config',
-        'pyramid_detector.core.models',
-        'pyramid_detector.core.strategies',
-        'pyramid_detector.core.pyramid_detector',
-        'pyramid_detector.core.orchestrator',
-        'pyramid_detector.platform',
-        'pyramid_detector.platform.base',
-        'pyramid_detector.platform.unix',
-        'pyramid_detector.platform.windows',
-        'pyramid_detector.platform.factory',
-        'pyramid_detector.gui',
-        'pyramid_detector.gui.app',
+        'pyramid_toolkit',
+        'pyramid_toolkit.core',
+        'pyramid_toolkit.core.config',
+        'pyramid_toolkit.core.models',
+        'pyramid_toolkit.core.strategies',
+        'pyramid_toolkit.core.pyramid_toolkit',
+        'pyramid_toolkit.core.orchestrator',
+        'pyramid_toolkit.platform',
+        'pyramid_toolkit.platform.base',
+        'pyramid_toolkit.platform.unix',
+        'pyramid_toolkit.platform.windows',
+        'pyramid_toolkit.platform.factory',
+        'pyramid_toolkit.gui',
+        'pyramid_toolkit.gui.app',
         'lihzahrd',
         'tkinter',
     ],
@@ -54,7 +54,7 @@ a = Analysis(
     hooksconfig={},
     runtime_hooks=[],
     excludes=[
-        'pyramid_detector.cli',  # Exclude CLI if you only want GUI
+        'pyramid_toolkit.cli',  # Exclude CLI if you only want GUI
     ],
     win_no_prefer_redirects=False,
     win_private_assemblies=False,
@@ -104,8 +104,8 @@ if sys.platform == 'darwin':
         info_plist={
             'NSPrincipalClass': 'NSApplication',
             'NSHighResolutionCapable': 'True',
-            'CFBundleName': 'Pyramid Detector',
-            'CFBundleDisplayName': 'Terraria Pyramid Detector',
+            'CFBundleName': 'Pyramid Toolkit',
+            'CFBundleDisplayName': 'Terraria Pyramid Toolkit',
             'CFBundleVersion': '2.0.0',
             'CFBundleShortVersionString': '2.0.0',
         },
