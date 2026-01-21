@@ -20,7 +20,7 @@ class WorldGenerationParams:
 
     Attributes:
         size: World size (1=Small, 2=Medium, 3=Large)
-        difficulty: Difficulty level (1=Normal, 2=Expert, 3=Master)
+        difficulty: Difficulty level (1=Normal, 2=Expert, 3=Master, 4=Journey)
         evil: Evil biome type (1=Random, 2=Corruption, 3=Crimson)
         world_name: Name of the world to generate
     """

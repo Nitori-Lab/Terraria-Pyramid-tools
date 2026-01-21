@@ -6,7 +6,7 @@ new core architecture.
 """
 
 import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
+from tkinter import ttk, scrolledtext, messagebox, filedialog
 import threading
 
 from ..core import (
@@ -71,7 +71,7 @@ class PyramidDetectorGUI:
 
         modes = [
             ('fixed', 'Auto Pyramid Finder', 'Generate fixed number of worlds'),
-            ('target', 'Find Pyramid Worlds', 'Find specific number of pyramids'),
+            ('target', 'Find Pyramid Worlds', 'Find specific number of pyramid worlds'),
             ('basic', 'World Generator', 'Generate without detection')
         ]
 
@@ -108,7 +108,7 @@ class PyramidDetectorGUI:
         # Difficulty
         ttk.Label(param_frame, text="Difficulty:").grid(row=1, column=0, sticky=tk.W, padx=5, pady=5)
         self.difficulty_combo = ttk.Combobox(param_frame, state='readonly', width=15)
-        self.difficulty_combo['values'] = ['Normal', 'Expert', 'Master']
+        self.difficulty_combo['values'] = ['Normal', 'Expert', 'Master', 'Journey']
         self.difficulty_combo.current(0)  # Default: Normal
         self.difficulty_combo.grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
 
@@ -154,12 +154,12 @@ class PyramidDetectorGUI:
         )
         self.stop_button.pack(side=tk.LEFT, padx=5)
 
-        self.open_dir_button = ttk.Button(
+        self.select_dir_button = ttk.Button(
             button_frame,
-            text="Open World Directory",
-            command=self.open_world_directory
+            text="Select World Directory",
+            command=self.select_world_directory
         )
-        self.open_dir_button.pack(side=tk.LEFT, padx=5)
+        self.select_dir_button.pack(side=tk.LEFT, padx=5)
 
         self.clear_button = ttk.Button(
             button_frame,
@@ -314,16 +314,36 @@ class PyramidDetectorGUI:
         self.is_running = False
         self.update_button_states()
 
-    def open_world_directory(self):
-        """Open world directory in file manager."""
-        if self.platform:
-            try:
-                world_dir = self.platform.get_world_directory()
-                self.platform.open_directory(world_dir)
-            except Exception as e:
-                messagebox.showerror("Error", f"Could not open directory:\n{e}")
-        else:
+    def select_world_directory(self):
+        """Let user select world directory."""
+        if not self.platform:
             messagebox.showerror("Error", "Platform not initialized")
+            return
+
+        try:
+            # Get current directory as initial directory
+            initial_dir = None
+            try:
+                initial_dir = self.platform.get_world_directory()
+            except:
+                pass
+
+            # Show directory selection dialog
+            selected_dir = filedialog.askdirectory(
+                title="Select Terraria World Directory",
+                initialdir=initial_dir
+            )
+
+            if selected_dir:
+                # Save the selected directory
+                self.platform.world_directory = selected_dir
+                self.log(f"World directory set to: {selected_dir}")
+                messagebox.showinfo(
+                    "Success",
+                    f"World directory updated to:\n{selected_dir}"
+                )
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not select directory:\n{e}")
 
     def log(self, message):
         """Thread-safe log message."""

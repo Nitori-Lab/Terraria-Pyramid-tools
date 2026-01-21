@@ -1,7 +1,7 @@
 # Terraria Pyramid Toolkit
 
 Automatically detect pyramids or generate a specified number of worlds with at least 1 pyramid in Terraria with GUI and CLI support.
-(I make the toolkit mainly beacause classic speedrun practice demands a lot of worlds with pyramid, which are hard to generate. Using this toolkit, you can easily start your sppedrun practice. But I don't think you should use it when you want to submit your run to speedrun website.)
+(I make the toolkit mainly because classic speedrun practice demands a lot of worlds with pyramid, which are hard to generate. Using this toolkit, you can easily start your sppedrun practice. But I don't think you should use it when you want to submit your run to speedrun website.)
 
 ## Features
 

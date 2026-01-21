@@ -105,7 +105,7 @@ def cli():
     type=int,
     default=WorldConfig.DEFAULT_DIFFICULTY,
     callback=validate_difficulty,
-    help='Difficulty (1=Normal, 2=Expert, 3=Master)'
+    help='Difficulty (1=Normal, 2=Expert, 3=Master, 4=Journey)'
 )
 @click.option(
     '--evil', '-e',
@@ -193,7 +193,7 @@ def auto_find(size, difficulty, evil, count, delete):
     type=int,
     default=WorldConfig.DEFAULT_DIFFICULTY,
     callback=validate_difficulty,
-    help='Difficulty (1=Normal, 2=Expert, 3=Master)'
+    help='Difficulty (1=Normal, 2=Expert, 3=Master, 4=Journey)'
 )
 @click.option(
     '--evil', '-e',
@@ -286,7 +286,7 @@ def find_pyramids(size, difficulty, evil, target, max_attempts):
     type=int,
     default=WorldConfig.DEFAULT_DIFFICULTY,
     callback=validate_difficulty,
-    help='Difficulty (1=Normal, 2=Expert, 3=Master)'
+    help='Difficulty (1=Normal, 2=Expert, 3=Master, 4=Journey)'
 )
 @click.option(
     '--evil', '-e',

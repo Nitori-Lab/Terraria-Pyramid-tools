@@ -13,13 +13,13 @@ block_cipher = None
 
 # Determine platform-specific settings
 if sys.platform == 'darwin':  # macOS
-    icon_file = None  # Add your .icns file path here if you have one
+    icon_file = 'icon.icns'
     console = False
 elif sys.platform == 'win32':  # Windows
-    icon_file = None  # Add your .ico file path here if you have one
+    icon_file = 'icon.ico'
     console = False
 else:  # Linux
-    icon_file = None
+    icon_file = 'icon.png'
     console = False
 
 a = Analysis(

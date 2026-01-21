@@ -141,7 +141,12 @@ class GenerationOrchestrator:
             self._log(progress_msg)
 
             # Create unique world name (timestamp + sequence)
-            world_name = self._generate_world_name(stats.total_generated + 1)
+            world_name = self._generate_world_name(
+                sequence=stats.total_generated + 1,
+                size=base_params.size,
+                difficulty=base_params.difficulty,
+                evil=base_params.evil
+            )
 
             # Update params with new world name
             params = WorldGenerationParams(
@@ -205,18 +210,37 @@ class GenerationOrchestrator:
 
         return results, stats
 
-    def _generate_world_name(self, sequence: int) -> str:
+    def _generate_world_name(self, sequence: int, size: int, difficulty: int, evil: int) -> str:
         """
-        Generate unique world name with timestamp.
+        Generate unique world name with world settings and timestamp.
 
         Args:
             sequence: Sequence number for this world
+            size: World size (1=Small, 2=Medium, 3=Large)
+            difficulty: Difficulty level (1=Normal, 2=Expert, 3=Master, 4=Journey)
+            evil: Evil biome type (1=Random, 2=Corruption, 3=Crimson)
 
         Returns:
-            Unique world name
+            Unique world name in format: {size}_{difficulty}_{evil}_{timestamp}_{sequence}
         """
+        # Size abbreviations
+        size_abbr = {1: 's', 2: 'm', 3: 'l'}[size]
+
+        # Difficulty abbreviations (empty for normal)
+        difficulty_abbr = {1: '', 2: 'e', 3: 'm', 4: 'j'}[difficulty]
+
+        # Evil type abbreviations
+        evil_abbr = {1: 'rand', 2: 'corruption', 3: 'crimson'}[evil]
+
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        return f"World_{timestamp}_{sequence}"
+
+        # Build name parts
+        parts = [size_abbr]
+        if difficulty_abbr:  # Only add difficulty if not normal
+            parts.append(difficulty_abbr)
+        parts.extend([evil_abbr, timestamp, str(sequence)])
+
+        return '_'.join(parts)
 
     def _get_file_size_mb(self, file_path: Optional[Path]) -> float:
         """

@@ -13,7 +13,7 @@ class WorldConfig:
 
     # ==================== Value Ranges (Business Rules) ====================
     SIZE_RANGE = (1, 3)           # Small, Medium, Large
-    DIFFICULTY_RANGE = (1, 3)     # Normal, Expert, Master
+    DIFFICULTY_RANGE = (1, 4)     # Normal, Expert, Master, Journey
     EVIL_RANGE = (1, 3)           # Random, Corruption, Crimson
     COUNT_RANGE = (1, 200)        # Max worlds per batch
     PYRAMID_TARGET_RANGE = (1, 50)    # Max pyramid worlds to find
@@ -29,7 +29,8 @@ class WorldConfig:
     DIFFICULTY_LABELS: Dict[int, str] = {
         1: 'Normal',
         2: 'Expert',
-        3: 'Master'
+        3: 'Master',
+        4: 'Journey'
     }
 
     EVIL_LABELS: Dict[int, str] = {
@@ -92,7 +93,7 @@ class WorldConfig:
             raise ValueError(
                 f"Difficulty must be between {WorldConfig.DIFFICULTY_RANGE[0]} "
                 f"and {WorldConfig.DIFFICULTY_RANGE[1]} "
-                f"(1=Normal, 2=Expert, 3=Master)"
+                f"(1=Normal, 2=Expert, 3=Master, 4=Journey)"
             )
         return value
 
