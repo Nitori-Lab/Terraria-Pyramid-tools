@@ -168,14 +168,14 @@ create-dmg \
   --icon-size 100 \
   --icon "PyramidDetector.app" 175 120 \
   --app-drop-link 425 120 \
-  "PyramidDetector-2.0.0-macOS.dmg" \
+  "PyramidDetector-1.0.0-macOS.dmg" \
   "dist/PyramidDetector.app"
 ```
 
 **Or create ZIP:**
 ```bash
 cd dist
-zip -r PyramidDetector-2.0.0-macOS.zip PyramidDetector.app
+zip -r PyramidDetector-1.0.0-macOS.zip PyramidDetector.app
 ```
 
 ### Windows
@@ -188,7 +188,7 @@ zip -r PyramidDetector-2.0.0-macOS.zip PyramidDetector.app
 **Or create ZIP:**
 ```batch
 cd dist
-powershell Compress-Archive -Path PyramidDetector -DestinationPath PyramidDetector-2.0.0-Windows.zip
+powershell Compress-Archive -Path PyramidDetector -DestinationPath PyramidDetector-1.0.0-Windows.zip
 ```
 
 ### Linux
@@ -196,7 +196,7 @@ powershell Compress-Archive -Path PyramidDetector -DestinationPath PyramidDetect
 **Create tarball:**
 ```bash
 cd dist
-tar -czf PyramidDetector-2.0.0-Linux.tar.gz PyramidDetector/
+tar -czf PyramidDetector-1.0.0-Linux.tar.gz PyramidDetector/
 ```
 
 **Create AppImage (advanced):**

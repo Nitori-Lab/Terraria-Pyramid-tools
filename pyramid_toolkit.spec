@@ -106,7 +106,7 @@ if sys.platform == 'darwin':
             'NSHighResolutionCapable': 'True',
             'CFBundleName': 'Pyramid Toolkit',
             'CFBundleDisplayName': 'Terraria Pyramid Toolkit',
-            'CFBundleVersion': '2.0.0',
-            'CFBundleShortVersionString': '2.0.0',
+            'CFBundleVersion': '1.0.0',
+            'CFBundleShortVersionString': '1.0.0',
         },
     )
