@@ -160,8 +160,15 @@ class GenerationOrchestrator:
             detect_pyramid = isinstance(strategy, GenerationStrategy)
             result = self.generate_single_world(params, detect_pyramid=detect_pyramid)
 
+            # Update statistics (always, even if failed)
+            stats.add_result(result)
+
             if not result.success:
                 self._log(f"✗ Generation failed: {result.error_message}")
+                # Check if this is a critical error (TerrariaServer not found)
+                if "TerrariaServer not found" in result.error_message:
+                    self._log("Critical error: Cannot continue without TerrariaServer")
+                    break
                 continue
 
             # Log world creation
@@ -179,9 +186,6 @@ class GenerationOrchestrator:
                     self._log("  🗑️  Deleting world without pyramid...")
                     self.platform.delete_world(result.world_path)
                     result.deleted = True
-
-            # Update statistics
-            stats.add_result(result)
 
             # Keep result if not deleted
             if not result.deleted:

@@ -161,6 +161,13 @@ class PyramidDetectorGUI:
         )
         self.select_dir_button.pack(side=tk.LEFT, padx=5)
 
+        self.select_server_button = ttk.Button(
+            button_frame,
+            text="Select TerrariaServer",
+            command=self.select_terraria_server
+        )
+        self.select_server_button.pack(side=tk.LEFT, padx=5)
+
         self.clear_button = ttk.Button(
             button_frame,
             text="Clear Log",
@@ -344,6 +351,40 @@ class PyramidDetectorGUI:
                 )
         except Exception as e:
             messagebox.showerror("Error", f"Could not select directory:\n{e}")
+
+    def select_terraria_server(self):
+        """Let user select TerrariaServer executable."""
+        if not self.platform:
+            messagebox.showerror("Error", "Platform not initialized")
+            return
+
+        try:
+            # Get current TerrariaServer path if available
+            initial_dir = None
+            if self.platform.terraria_server:
+                from pathlib import Path
+                initial_dir = str(Path(self.platform.terraria_server).parent)
+
+            # Show file selection dialog
+            selected_file = filedialog.askopenfilename(
+                title="Select TerrariaServer Executable",
+                initialdir=initial_dir,
+                filetypes=[
+                    ("Executable files", "TerrariaServer* *.exe"),
+                    ("All files", "*.*")
+                ]
+            )
+
+            if selected_file:
+                # Save the selected file
+                self.platform.terraria_server = selected_file
+                self.log(f"TerrariaServer set to: {selected_file}")
+                messagebox.showinfo(
+                    "Success",
+                    f"TerrariaServer updated to:\n{selected_file}"
+                )
+        except Exception as e:
+            messagebox.showerror("Error", f"Could not select file:\n{e}")
 
     def log(self, message):
         """Thread-safe log message."""

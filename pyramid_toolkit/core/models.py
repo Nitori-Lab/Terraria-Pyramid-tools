@@ -184,10 +184,12 @@ class GenerationStatistics:
         Args:
             result: World generation result to add
         """
-        if result.success:
-            self.total_generated += 1
-            self.total_time += result.generation_time
+        # Count all attempts (success or failure)
+        self.total_generated += 1
+        self.total_time += result.generation_time
 
+        # Only track pyramids and deletions for successful generations
+        if result.success:
             if result.has_pyramid:
                 self.pyramids_found += 1
                 self.pyramid_worlds.append(result.world_name)
