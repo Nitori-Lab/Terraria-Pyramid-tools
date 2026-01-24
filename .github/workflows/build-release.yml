@@ -50,32 +50,47 @@ jobs:
       run: |
         .\build.bat
 
-    - name: Package Linux build
-      if: runner.os == 'Linux'
+    - name: Verify build output (Unix)
+      if: runner.os != 'Windows'
       run: |
-        cd dist
-        tar -czf PyramidDetector-Linux.tar.gz PyramidDetector/
-        cd ..
+        echo "=== Checking dist directory ==="
+        ls -lah dist/
+        echo ""
+        echo "=== Checking build size ==="
+        du -sh dist/*
 
-    - name: Package Windows build
+    - name: Verify build output (Windows)
       if: runner.os == 'Windows'
       run: |
-        cd dist
-        Compress-Archive -Path PyramidDetector -DestinationPath PyramidDetector-Windows.zip
-        cd ..
+        echo "=== Checking dist directory ==="
+        dir dist
+        echo ""
+        echo "=== Checking PyramidDetector folder ==="
+        dir dist\PyramidDetector
 
-    - name: Package macOS build
-      if: runner.os == 'macOS'
-      run: |
-        cd dist
-        zip -r PyramidDetector-macOS.zip PyramidDetector.app
-        cd ..
-
-    - name: Upload artifacts
+    - name: Upload Linux artifact
+      if: runner.os == 'Linux'
       uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.artifact_name }}
-        path: dist/${{ matrix.asset_name }}
+        path: dist/PyramidDetector/
+        compression-level: 9
+
+    - name: Upload Windows artifact
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: dist/PyramidDetector/
+        compression-level: 9
+
+    - name: Upload macOS artifact
+      if: runner.os == 'macOS'
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: dist/PyramidDetector.app/
+        compression-level: 9
 
   release:
     name: Create Release
@@ -89,13 +104,29 @@ jobs:
       with:
         path: artifacts
 
+    - name: Package artifacts for release
+      run: |
+        cd artifacts
+        # Package Linux
+        tar -czf PyramidDetector-Linux.tar.gz -C PyramidDetector-Linux .
+        # Package Windows
+        cd PyramidDetector-Windows
+        zip -r ../PyramidDetector-Windows.zip .
+        cd ..
+        # Package macOS
+        cd PyramidDetector-macOS
+        zip -r ../PyramidDetector-macOS.zip .
+        cd ..
+        # Show results
+        ls -lh *.tar.gz *.zip
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          artifacts/PyramidDetector-Linux/PyramidDetector-Linux.tar.gz
-          artifacts/PyramidDetector-Windows/PyramidDetector-Windows.zip
-          artifacts/PyramidDetector-macOS/PyramidDetector-macOS.zip
+          artifacts/PyramidDetector-Linux.tar.gz
+          artifacts/PyramidDetector-Windows.zip
+          artifacts/PyramidDetector-macOS.zip
         draft: false
         prerelease: false
       env:
